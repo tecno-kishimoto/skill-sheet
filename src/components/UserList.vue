@@ -42,6 +42,11 @@ const handleUserUpdated = (updatedUser: User) => {
   closeUserEditModal()
 }
 
+const handleUserDeleted = (userId: string) => {
+  userStore.deleteUser(userId)
+  closeUserEditModal()
+}
+
 const goToUserDetails = (userId: string) => {
   router.push({ name: 'UserDetails', params: { id: userId } })
 }
@@ -78,12 +83,12 @@ const goToUserDetails = (userId: string) => {
       :isOpen="isUserAddModalOpen" 
       @close="closeUserAddModal" 
       @user-added="handleUserAdded"
-    />
-    <UserEditModal
+    />    <UserEditModal
       :isOpen="isUserEditModalOpen"
       :user="selectedUser"
       @close="closeUserEditModal"
       @user-updated="handleUserUpdated"
+      @user-deleted="handleUserDeleted"
     />
   </div>
 </template>

@@ -117,12 +117,14 @@ watch(() => props.user, (newUser) => {
 const submitUpdate = () => {
   if (editableUser.value) {
     emit('user-updated', { ...editableUser.value });
+    closeModal();
   }
 };
 
 const confirmDelete = () => {
   if (editableUser.value && window.confirm(`${editableUser.value.name}さんを削除しますか？`)) {
     emit('user-deleted', editableUser.value.id);
+    closeModal();
   }
 };
 
